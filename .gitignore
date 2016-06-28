@@ -1,7 +1,8 @@
-app
-hooks
-node_modules
-package.json
-platforms
-references.d.ts
-tsconfig.json
+.vscode/
+app/**/*.js
+hooks/
+lib/
+node_modules/
+platforms/
+tmp/
+typings/

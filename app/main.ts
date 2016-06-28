@@ -2,5 +2,10 @@
 import {nativeScriptBootstrap} from "nativescript-angular/application";
 import {AppComponent} from "./app.component";
 import {APP_ROUTER_PROVIDERS} from "./app.routes";
+import {HTTP_PROVIDERS} from "@angular/http";
 
-nativeScriptBootstrap(AppComponent, [APP_ROUTER_PROVIDERS]);
+// HACK - patch dom adapter
+import {Parse5DomAdapter} from '@angular/platform-server/src/parse5_adapter';
+(<any>Parse5DomAdapter).prototype.getCookie = function (name) { return null; };
+
+nativeScriptBootstrap(AppComponent, [HTTP_PROVIDERS, APP_ROUTER_PROVIDERS]);

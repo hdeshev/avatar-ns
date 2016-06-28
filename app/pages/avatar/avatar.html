@@ -1,0 +1,28 @@
+<ActionBar title="Adorable Avatars">
+  
+</ActionBar>
+<StackLayout>
+    <StackLayout orientation="horizontal">
+        <ListPicker 
+            [items]="availableEyes" 
+            [(ngModel)]="selectedEyesIndex" 
+            (selectedIndexChange)="reloadAvatar()"
+            width="25%">
+        </ListPicker>
+        <ListPicker 
+            [items]="availabelNoses" 
+            [(ngModel)]="selectedNoseIndex" 
+            (selectedIndexChange)="reloadAvatar()"
+            width="25%">
+        </ListPicker>
+        <ListPicker 
+            [items]="availableMouths" 
+            [(ngModel)]="selectedMouthIndex" 
+            (selectedIndexChange)="reloadAvatar()"
+            width="25%">
+        </ListPicker>
+    </StackLayout>
+
+    <Image src="{{avatarSrc}}"></Image>
+    
+</StackLayout>

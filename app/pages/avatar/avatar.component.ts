@@ -12,7 +12,7 @@ import {AvatarService} from '../../shared/avatar.service';
 export class AvatarComponent {
 
     availableEyes: Array<string> = ["eyes1"];
-    availabelNoses: Array<string> = ["nose1"];
+    availableNoses: Array<string> = ["nose1"];
     availableMouths: Array<string> = ["mouth1"];
 
     selectedEyesIndex: number = 0;
@@ -23,7 +23,7 @@ export class AvatarComponent {
         return this.availableEyes[this.selectedEyesIndex];
     };
     get nose(): string {
-        return this.availabelNoses[this.selectedNoseIndex];
+        return this.availableNoses[this.selectedNoseIndex];
     }
     get mouth(): string {
         return this.availableMouths[this.selectedMouthIndex];
@@ -38,9 +38,8 @@ export class AvatarComponent {
             .then(
                 (face) => {
                     this.availableEyes = face.eyes;
-                    this.availabelNoses = face.nose;
+                    this.availableNoses = face.nose;
                     this.availableMouths = face.mouth;
-
                 },
                 (error) => alert("Couldn't load face features")
             );

@@ -1,7 +1,4 @@
 import {Component} from '@angular/core';
-
-//import {HTTP_PROVIDERS, Http} from '@angular/http';
-
 import {AvatarService} from '../../shared/avatar.service';
 
 @Component({
@@ -11,9 +8,9 @@ import {AvatarService} from '../../shared/avatar.service';
 })
 export class AvatarComponent {
 
-    availableEyes: Array<string> = ["eyes1"];
-    availableNoses: Array<string> = ["nose1"];
-    availableMouths: Array<string> = ["mouth1"];
+    availableEyes: Array<string> = ['eyes1'];
+    availableNoses: Array<string> = ['nose1'];
+    availableMouths: Array<string> = ['mouth1'];
 
     selectedEyesIndex: number = 0;
     selectedNoseIndex: number = 0;
@@ -41,12 +38,11 @@ export class AvatarComponent {
                     this.availableNoses = face.nose;
                     this.availableMouths = face.mouth;
                 },
-                (error) => alert("Couldn't load face features")
+                (error) => alert('Failed to load face features')
             );
    }
 
     reloadAvatar() {
         this.avatarSrc = this._avatarService.getAvatarSrc(this.eyes, this.nose, this.mouth);
     }
-
 }

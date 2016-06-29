@@ -1,28 +1,43 @@
 <ActionBar title="Adorable Avatars">
   
 </ActionBar>
-<StackLayout>
-    <StackLayout orientation="horizontal">
-        <ListPicker 
-            [items]="availableEyes" 
-            [(ngModel)]="selectedEyesIndex" 
-            (selectedIndexChange)="reloadAvatar()"
-            width="25%">
-        </ListPicker>
-        <ListPicker 
-            [items]="availabelNoses" 
-            [(ngModel)]="selectedNoseIndex" 
-            (selectedIndexChange)="reloadAvatar()"
-            width="25%">
-        </ListPicker>
-        <ListPicker 
-            [items]="availableMouths" 
-            [(ngModel)]="selectedMouthIndex" 
-            (selectedIndexChange)="reloadAvatar()"
-            width="25%">
-        </ListPicker>
-    </StackLayout>
+<DockLayout>
+    <GridLayout dock="top" rows="auto, auto" columns="*, *, *">
+        <Label text="Eyes" row="0" col="0" class="title"></Label>
+        <Label text="Nose" row="0" col="1" class="title"></Label>
+        <Label text="Mouth" row="0" col="2" class="title"></Label>
 
+        <StackLayout row="1", col="0">
+            <Label *ngFor="let eyes of availableEyes; let i = index"
+                [text]="eyes"
+                (tap)="selectedEyesIndex = i; reloadAvatar()"
+                class="featureButton"
+                [class.selected]="selectedEyesIndex === i"
+                [class.unselected]="selectedEyesIndex !== i">
+            </Label>
+        </StackLayout>
+        <StackLayout row="1", col="1">
+            <Label *ngFor="let nose of availableNoses; let i = index"
+                [text]="nose"
+                (tap)="selectedNoseIndex = i; reloadAvatar()"
+                class="featureButton"
+                [class.selected]="selectedNoseIndex === i"
+                [class.unselected]="selectedNoseIndex !== i">
+            </Label>
+        </StackLayout>
+        <StackLayout row="1", col="2">
+            <Label *ngFor="let mouth of availableMouths; let i = index"
+                [text]="mouth"
+                (tap)="selectedMouthIndex = i; reloadAvatar()"
+                class="featureButton"
+                [class.selected]="selectedMouthIndex === i"
+                [class.unselected]="selectedMouthIndex !== i">
+            </Label>
+        </StackLayout>
+    </GridLayout>
+
+    <Label dock="bottom" [text]="avatarSrc" textWrap="true" class="avatar-src"></Label>
+    
     <Image [src]="avatarSrc"></Image>
     
-</StackLayout>
+</DockLayout>

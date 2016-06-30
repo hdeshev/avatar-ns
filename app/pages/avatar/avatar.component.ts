@@ -1,9 +1,10 @@
-import {Component} from '@angular/core';
+import {Inject, Component} from '@angular/core';
+import {AvatarModel} from '../../shared/avatar.model';
 import {AvatarService} from '../../shared/avatar.service';
 
 @Component({
     selector: 'hello',
-    providers: [AvatarService],
+    providers: [AvatarModel, AvatarService],
     templateUrl: 'pages/avatar/avatar.html'
 })
 export class AvatarComponent {
@@ -28,21 +29,12 @@ export class AvatarComponent {
 
     avatarSrc: string;
 
-    constructor(private _avatarService: AvatarService) {
+    constructor(@Inject(AvatarModel) private model: AvatarModel) {
         this.reloadAvatar();
 
-        this._avatarService.getPossilbeParts()
-            .then(
-                (face) => {
-                    this.availableEyes = face.eyes;
-                    this.availableNoses = face.nose;
-                    this.availableMouths = face.mouth;
-                },
-                (error) => alert('Failed to load face features')
-            );
    }
 
     reloadAvatar() {
-        this.avatarSrc = this._avatarService.getAvatarSrc(this.eyes, this.nose, this.mouth);
+        this.model.reloadAvatar();
     }
 }

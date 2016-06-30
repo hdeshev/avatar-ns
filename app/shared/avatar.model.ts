@@ -1,3 +1,4 @@
+import {Inject} from "@angular/core";
 import {AvatarService} from './avatar.service';
 
 export class AvatarModel {
@@ -21,7 +22,7 @@ export class AvatarModel {
 
     avatarSrc: string;
 
-    constructor(private _avatarService: AvatarService) {
+    constructor(@Inject(AvatarService) private _avatarService: AvatarService) {
         this.reloadAvatar();
 
         this._avatarService.getPossilbeParts()
